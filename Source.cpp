@@ -30,6 +30,9 @@ int main()
 		cin >> numOfRooms1;
 
 		while (numOfRooms1 < MIN_ROOMS /*1*/ || numOfRooms1 > MAX_ROOMS /*30*/)
+		{
+				
+		}
 
 	}
 	else if (numOfFloors == 4)
