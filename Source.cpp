@@ -7,7 +7,8 @@ int main()
 {
 	// this enough variables for you? :P
 	int const SINGLE_ROOM = 60, DOUBLE_ROOM = 75, KING_ROOM = 100, SUITE_ROOM = 150, MIN_FLOORS = 1, MAX_FLOORS = 5, MIN_ROOMS = 1, MAX_ROOMS = 30;
-	int totalRooms, numOfFloors, numOfRooms1, numOfRooms2, numOfRooms3, numOfRooms4, numOfRooms5, single1, single2, single3, single4, single5, double1, double2, double3, double4, double5, king1, king2, king3, king4, king5, suite1, suite2, suite3, suite4, suite5,
+	int totalRooms, numOfFloors, numOfRooms1, numOfRooms2, numOfRooms3, numOfRooms4, numOfRooms5, single1, single2, single3, single4, single5, double1, 
+		double2, double3, double4, double5, king1, king2, king3, king4, king5, suite1, suite2, suite3, suite4, suite5,
 		rooms1 = 0, rooms2 = 0, rooms3 = 0, rooms4 = 0, rooms5 = 0, singleCost, doubleCost, kingCost, suiteCost, hotelIncome, totalOccupied, totalUnoccupied;
 	double occupancyRate;
 	string location;
