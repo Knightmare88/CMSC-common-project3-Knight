@@ -1,3 +1,48 @@
+/*
+* Class: CMSC140 CRN
+ * Instructor: Khandan Monshi
+ * Project3
+ * Description: Hotel income calculator
+ * Due Date: 10/27/21
+ * I pledge that I have completed the programming assignment independently.
+   I have not copied the code from a student or any source.
+   I have not given my code to any student.
+   Print your Name here: Knight
+
+   NOTE: This code is EXTREMELY lazy, and should not be copied, and will be harder to read than neccesary
+
+ * Pseudocode or Algorithm for the program:
+ Initialize Variables (a lot of variables)
+Display intro
+Output “Enter location of this hotel”
+Get input for String: Location
+Output “Enter total number of floors for this hotel”
+Get input for total floors
+Repeat last 2 steps if invalid input (<1 || >5)
+Ask for number of rooms on 1st floor
+Ask for number of rooms on 2nd floor if total floors [>=2]
+Ask for number of rooms on 3rd floor if total floors [>=3]
+Ask for number of rooms on 4th floor if total floors [>=4]
+Ask for number of rooms on 5th floor if total floors [=5]
+Ask for number of occupied Single, Double, King and Suite rooms on each applicable floor
+Add up total number of each type of room from each floor
+Multiply by appropriate cost multiplier for each kind of room
+Display income from each type of room
+Add up income from each room
+Display total income
+Display total # of rooms
+Calculate number of unoccupied rooms
+Display total # of unoccupied rooms
+Calculate occupancy rate
+Display occupancy rate
+Display floor with least number of rooms
+Display “Need to improve hotel occupancy rate” if occupancy rate is [<=50]
+Display closing statements
+
+I HIGHLY, and I mean HIGHLY reccomend minimizing pretty much anything you are not looking at,
+as this is lazy code, and thus takes up a lot of space
+*/
+
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -7,8 +52,7 @@ int main()
 {
 	// this enough variables for you? :P
 	int const SINGLE_ROOM = 60, DOUBLE_ROOM = 75, KING_ROOM = 100, SUITE_ROOM = 150, MIN_FLOORS = 1, MAX_FLOORS = 5, MIN_ROOMS = 1, MAX_ROOMS = 30;
-	int totalRooms, numOfFloors, numOfRooms1, numOfRooms2, numOfRooms3, numOfRooms4, numOfRooms5, single1, single2, single3, single4, single5, double1, 
-		double2, double3, double4, double5, king1, king2, king3, king4, king5, suite1, suite2, suite3, suite4, suite5,
+	int totalRooms, numOfFloors, numOfRooms1 = 0, numOfRooms2 = 0, numOfRooms3 = 0, numOfRooms4 = 0, numOfRooms5 = 0, single1, single2, single3, single4, single5, double1, double2, double3, double4, double5, king1, king2, king3, king4, king5, suite1, suite2, suite3, suite4, suite5,
 		rooms1 = 0, rooms2 = 0, rooms3 = 0, rooms4 = 0, rooms5 = 0, singleCost, doubleCost, kingCost, suiteCost, hotelIncome, totalOccupied, totalUnoccupied;
 	double occupancyRate;
 	string location;
@@ -32,6 +76,7 @@ int main()
 		cout << endl << endl;
 	}
 
+	//all of these do the same thing but for different numbers of floors V
 	if (numOfFloors == 5)
 	{
 		cout << "Enter total number of rooms on the 1st floor: ";
@@ -668,6 +713,7 @@ int main()
 	totalUnoccupied = totalRooms - totalOccupied;
 
 	}
+	//all of these do the same thing but for different numbers of floors ^
 
 	//Num of rooms has already been established
 	singleCost = singleCost * 60;
@@ -675,7 +721,10 @@ int main()
 	kingCost = kingCost * 100;
 	suiteCost = suiteCost * 150;
 	hotelIncome = singleCost + doubleCost + kingCost + suiteCost;
-	totalRooms = rooms1 + rooms2 + rooms3 + rooms4 + rooms5;
+
+	//calculating occupancy rate
+	occupancyRate = (double)totalOccupied / totalRooms;
+	occupancyRate = occupancyRate * 100;
 
 	cout << endl << endl << endl << "========================================================================================" << endl
 		<< "           BlueMont Hotel located in " << location << endl
@@ -683,9 +732,71 @@ int main()
 		<< setw(40) << "Single Room" << setw(20) << "Double Room" << setw(20) << "King Room" << setw(20) << "Suite Room" << endl
 		<< setw(20) << singleCost << setw(20) << doubleCost << setw(20) << kingCost << setw(20) << suiteCost << endl
 		<< "========================================================================================"
-		<< endl << "           Hotel Income:          $" << hotelIncome
-		<< endl << "       Total # of Rooms:           " << totalRooms
-		<< endl << " Total # Occupied Rooms:           " << totalOccupied;
+		<< endl << "            Hotel Income:            $" << hotelIncome
+		<< endl << "        Total # of Rooms:           " << totalRooms
+		<< endl << "  Total # Occupied Rooms:           " << totalOccupied
+		<< endl << "Total # Unoccupied Rooms:           " << totalUnoccupied
+		<< endl << setprecision(4) << "          Occupancy Rate:           " << occupancyRate << "%" << endl << endl;
 
+
+	//displaying which floor has the least number of rooms
+	if (numOfFloors == 5)
+	{
+		if (numOfRooms1 < numOfRooms2 && numOfRooms1 < numOfRooms3 && numOfRooms1 < numOfRooms4 && numOfRooms1 < numOfRooms5)
+			cout << "1st Floor with " << numOfRooms1 << ", has the least number of rooms.";
+		else if (numOfRooms2 < numOfRooms1 && numOfRooms2 < numOfRooms3 && numOfRooms2 < numOfRooms4 && numOfRooms2 < numOfRooms5)
+			cout << "2nd Floor with " << numOfRooms2 << ", has the least number of rooms.";
+		else if (numOfRooms3 < numOfRooms1 && numOfRooms3 < numOfRooms2 && numOfRooms3 < numOfRooms4 && numOfRooms3 < numOfRooms5)
+			cout << "3rd Floor with " << numOfRooms3 << ", has the least number of rooms.";
+		else if (numOfRooms4 < numOfRooms1 && numOfRooms4 < numOfRooms2 && numOfRooms4 < numOfRooms3 && numOfRooms4 < numOfRooms5)
+			cout << "4th Floor with " << numOfRooms4 << ", has the least number of rooms.";
+		else
+			cout << "5th Floor with " << numOfRooms5 << ", has the least number of rooms.";
+	}
+	else if (numOfFloors == 4)
+	{
+		if (numOfRooms1 < numOfRooms2 && numOfRooms1 < numOfRooms3 && numOfRooms1 < numOfRooms4)
+			cout << "1st Floor with " << numOfRooms1 << ", has the least number of rooms.";
+		else if (numOfRooms2 < numOfRooms1 && numOfRooms2 < numOfRooms3 && numOfRooms2 < numOfRooms4)
+			cout << "2nd Floor with " << numOfRooms2 << ", has the least number of rooms.";
+		else if (numOfRooms3 < numOfRooms1 && numOfRooms3 < numOfRooms2 && numOfRooms3 < numOfRooms4)
+			cout << "3rd Floor with " << numOfRooms3 << ", has the least number of rooms.";
+		else 
+			cout << "4th Floor with " << numOfRooms4 << ", has the least number of rooms.";
+	}
+	else if (numOfFloors == 3)
+	{
+		if (numOfRooms1 < numOfRooms2 && numOfRooms1 < numOfRooms3)
+			cout << "1st Floor with " << numOfRooms1 << ", has the least number of rooms.";
+		else if (numOfRooms2 < numOfRooms1 && numOfRooms2 < numOfRooms3)
+			cout << "2nd Floor with " << numOfRooms2 << ", has the least number of rooms.";
+		else
+			cout << "3rd Floor with " << numOfRooms3 << ", has the least number of rooms.";
+	}
+	else if (numOfFloors == 2)
+	{
+		if (numOfRooms1 < numOfRooms2)
+			cout << "1st Floor with " << numOfRooms1 << ", has the least number of rooms.";
+		else
+			cout << "2nd Floor with " << numOfRooms2 << ", has the least number of rooms.";
+	}
+	else
+	{
+		cout << "1st Floor with " << numOfRooms1 << ", has the least number of rooms.";
+	}
+	if (occupancyRate <= 50)
+	{
+		cout << endl << "Need to improve Hotel occupancy rate!!";
+	}
+	else
+	{
+
+	}
+
+	cout << endl 
+		<< "Thank you for testing my program!!" << endl
+		<< "PROGRAMMER: Knightmare88" << endl
+		<< "CMSC C140 Common Project 3" << endl
+		<< "Due Date: 10/27/2021";
 	return 0;
 }
